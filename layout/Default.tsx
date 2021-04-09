@@ -24,7 +24,9 @@ const DefaultLayout: React.FC<ILayoutProps> = ({
       margin: -8px;
     `}>
         <Navbar />
-        <main>
+        <main css={css`
+          padding: 8px;
+        `}>
           {children}
         </main>
     </div>
