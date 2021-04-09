@@ -4,6 +4,7 @@ import { jsx, css } from '@emotion/react'
 import React from 'react'
 
 import BurgerMenu from '../components/icons/BurgerMenu'
+import Button from '../components/Button'
 
 
 export interface INavbarProps {
@@ -55,8 +56,8 @@ const Navbar = ({ onClick }: INavbarProps) => {
           height: 0;
         `}
       >
-        <a css={baseLink} href="#news">Pokemon List</a>
-        <a css={baseLink} href="#contact">My Pokemon</a>
+        <a css={baseLink} href="/">Pokemon List</a>
+        <a css={baseLink} href="/my-pokemon">My Pokemon</a>
       </div>
       <a
         css={css`
@@ -66,9 +67,8 @@ const Navbar = ({ onClick }: INavbarProps) => {
           right: 0;
           top: 0;
         `}
-        href="#"
         onClick={toggleMenu}>
-        <i><BurgerMenu color="white" /></i>
+        <BurgerMenu color="white" />
       </a>
     </div>
   )
