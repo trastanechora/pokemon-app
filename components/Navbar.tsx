@@ -26,7 +26,6 @@ const Navbar = ({ onClick }: INavbarProps) => {
     overflow: hidden;
     background-color: #6200ee;
     position: relative;
-    margin-bottom: 20px;
     box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.3);
     font-family: 'Roboto', sans-serif;
   `
