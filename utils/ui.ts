@@ -3,8 +3,7 @@ export const createRippleEffect = (event) => {
 
   const circle = document.createElement("span");
   document.styleSheets[0].insertRule(
-    "\
-			@keyframes ripple {\
+    "@keyframes ripple {\
         to {\
           transform: scale(4);\
           opacity: 0;\

@@ -7,7 +7,6 @@ import Button from '../components/Button'
 const Home = () => {
   return (
     <DefaultLayout headerTitle="Pokemon App">
-      Home
        <Button>Test Button</Button>
     </DefaultLayout>
   )
