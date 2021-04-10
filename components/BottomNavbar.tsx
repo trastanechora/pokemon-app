@@ -32,7 +32,7 @@ const BottomNavbar = ({ onClick }: IBottomNavbarProps) => {
 
   const navbarBody = css`
     list-style: none;
-    height: 90px;
+    height: 64px;
     background: #6200ee;
     display: flex;
     flex-direction: row;
@@ -43,6 +43,11 @@ const BottomNavbar = ({ onClick }: IBottomNavbarProps) => {
     right: 0;
     left: 0;
     margin: 0;
+    padding: 0;
+
+    li:nth-child(1) a::after {
+      content: 'Home';
+    }
 
     li:nth-child(2) a::after {
       content: 'Pokemon List';
@@ -50,6 +55,9 @@ const BottomNavbar = ({ onClick }: IBottomNavbarProps) => {
 
     li:nth-child(3) a::after {
         content: 'My Pokemon';
+    }
+    @media (min-width: 960px) {
+      display: none;
     }
   `
 
@@ -71,17 +79,12 @@ const BottomNavbar = ({ onClick }: IBottomNavbarProps) => {
       opacity: 0;
     }
     a::after {
-      content: 'Home';
       font-size: 1rem;
       font-family: 'Roboto', sans-serif;
       color: white;
       display: block;
-      transform: scale(0);
       transform-origin: center;
       transition: all 200ms ease-in-out;
-    }
-    a:hover::after {
-      transform: scale(1);
     }
     a:hover::before {
       animation: ${animateCirlce} .5s 1 ease-in-out ;
@@ -96,13 +99,6 @@ const BottomNavbar = ({ onClick }: IBottomNavbarProps) => {
     text-decoration: none;
     text-align: center;
     position: relative
-  `
-
-  const baseIcon = css`
-    font-size: 2rem;
-    display: block;
-    color: white;
-    transition: all 200ms ease-in-out;
   `
 
   return (
