@@ -30,15 +30,18 @@ const DefaultLayout: React.FC<ILayoutProps> = ({
 
   const contentWrapper = css`
     padding: 64px;
+    @media (max-width: 600px) {
+      padding: 64px 12px;
+    }
   `
 
   return (
     <StoreContext.Provider value={{ state, dispatch }}>
       <div css={layoutWrapper}>
-          <Navbar />
-          <main css={contentWrapper}>
-            {children}
-          </main>
+        <main css={contentWrapper}>
+          {children}
+        </main>
+        <Navbar />
         <BottomNavbar />
       </div>
     </StoreContext.Provider>
