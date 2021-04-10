@@ -1,8 +1,6 @@
 import DefaultLayout from '../layout/Default'
-import Button from '../components/Button'
-
 import { useQuery, gql } from '@apollo/client';
-import { ApolloProvider } from '@apollo/client/react';
+import ListCard from '../components/ListCard'
 
 const GET_POKEMONS = gql`
   query pokemons($limit: Int, $offset: Int) {
@@ -41,8 +39,7 @@ export const FetchPokemon = () => {
 const Home = () => {
   return (
     <DefaultLayout headerTitle="Pokemon App">
-      <Button>Test Button</Button>
-      <FetchPokemon />
+      <ListCard />
     </DefaultLayout>
   )
 }
