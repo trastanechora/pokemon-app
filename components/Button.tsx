@@ -20,7 +20,7 @@ export interface IButtonProps {
 
 const Button = ({ type, onClick, children }: IButtonProps) => {
   const handleOnClick = (event) => {
-    createRippleEffect(event);
+    createRippleEffect(event, 'white');
     if (onClick) {
       onClick(event);
     }
