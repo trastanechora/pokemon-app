@@ -1,4 +1,4 @@
-export const createRippleEffect = (event) => {
+export const createRippleEffect = (event, color: string) => {
   const targetElement = event.target;
 
   const circle = document.createElement("span");
@@ -20,7 +20,8 @@ export const createRippleEffect = (event) => {
   circle.style.borderRadius = "50%";
   circle.style.transform = "scale(0)";
   circle.style.animation = "ripple 600ms linear";
-  circle.style.backgroundColor = "rgba(255, 255, 255, 0.7)";
+  circle.style.backgroundColor = color ? color : "white";
+  circle.style.opacity = "0.7";
 
   circle.style.width = circle.style.height = `${diameter}px`;
   circle.style.left = `${event.clientX - targetElement.offsetLeft - radius}px`;
