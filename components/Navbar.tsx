@@ -1,8 +1,6 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx, css } from '@emotion/react'
-import React from 'react'
-
 import PokeballIcon from '../components/icons/PokeballIcon'
 export interface INavbarProps {
   type?: 'primary' | 'secondary'
@@ -10,15 +8,6 @@ export interface INavbarProps {
 }
 
 const Navbar = ({ onClick }: INavbarProps) => {
-  const toggleMenu = () => {
-    var drawer = document.getElementById("myLinks");
-    if (drawer.style.height === "auto") {
-      drawer.style.height = "0";
-    } else {
-      drawer.style.height = "auto";
-    }
-  };
-
   const navbarBody = css`
     overflow: hidden;
     background-color: #6200ee;
@@ -46,6 +35,31 @@ const Navbar = ({ onClick }: INavbarProps) => {
     font-family: 'Roboto', sans-serif;
   `
 
+  const titleLink = css`
+    font-weight: 700;
+    font-size: 20px;
+  `
+
+  const leftMenuGroup = css`
+    display: flex;
+    padding-left: 40px;
+    @media (max-width: 960px) {
+      width: 100%;
+      justify-content: center;
+    }
+  `
+
+  const rightMenuGroup = css`
+    padding-right: 40px;
+    @media (max-width: 960px) {
+      display: none;
+    }
+  `
+
+  const iconWrapper = css`
+    margin-top: 12px
+  `
+
   return (
     <div
       css={navbarBody}
@@ -53,19 +67,18 @@ const Navbar = ({ onClick }: INavbarProps) => {
       <div
         css={navbarContainer}
       >
-        <div css={css`display: flex`}>
-          <PokeballIcon css={css`margin-top: 12px`} color="white" />
+        <div css={leftMenuGroup}>
+          <PokeballIcon css={iconWrapper} color="white" />
           <a
             css={css`
               ${baseLink}
-              font-weight: 700;
-              font-size: 20px;
+              ${titleLink}
             `}
           >
               Pokemon App
           </a>
         </div>
-        <div>
+        <div css={rightMenuGroup}>
           <a
             css={css`
               ${baseLink}
