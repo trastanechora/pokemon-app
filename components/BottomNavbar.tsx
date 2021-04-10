@@ -33,12 +33,12 @@ const BottomNavbar = ({ onClick }: IBottomNavbarProps) => {
   const navbarBody = css`
     list-style: none;
     height: 64px;
-    background: #6200ee;
+    background: #f04f5a;
     display: flex;
     flex-direction: row;
     box-shadow: 0 15px 30px rgba(0,0,0,.2);
     overflow: hidden;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     right: 0;
     left: 0;

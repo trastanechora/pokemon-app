@@ -31,7 +31,7 @@ const Button = ({ type, onClick, children }: IButtonProps) => {
     overflow: hidden;
     transition: background 400ms;
     color: #fff;
-    background-color: #6200ee;
+    background-color: #f04f5a;
     padding: 1rem 2rem;
     font-family: 'Roboto', sans-serif;
     font-size: 1rem;

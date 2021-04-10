@@ -10,7 +10,7 @@ export interface INavbarProps {
 const Navbar = ({ onClick }: INavbarProps) => {
   const navbarBody = css`
     overflow: hidden;
-    background-color: #6200ee;
+    background-color: #f04f5a;
     position: fixed;
     top: 0;
     width: 100%;
