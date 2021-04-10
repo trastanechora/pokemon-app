@@ -5,6 +5,7 @@ import React from 'react'
 import { useRouter } from 'next/router'
 
 import Navbar from '../components/Navbar'
+import BottomNavbar from '../components/BottomNavbar'
 interface ILayoutProps {
   headerTitle?: string
   children?: React.ReactNode
@@ -25,10 +26,11 @@ const DefaultLayout: React.FC<ILayoutProps> = ({
     `}>
         <Navbar />
         <main css={css`
-          padding: 8px;
+          padding: 64px;
         `}>
           {children}
         </main>
+      <BottomNavbar />
     </div>
   )
 }
