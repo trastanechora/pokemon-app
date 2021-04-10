@@ -24,8 +24,8 @@ export const createRippleEffect = (event, color: string) => {
   circle.style.opacity = "0.7";
 
   circle.style.width = circle.style.height = `${diameter}px`;
-  circle.style.left = `${event.clientX - targetElement.offsetLeft - radius}px`;
-  circle.style.top = `${event.clientY - targetElement.offsetTop - radius}px`;
+  circle.style.left = `${event.pageX - targetElement.offsetLeft - radius}px`;
+  circle.style.top = `${event.pageY - targetElement.offsetTop - radius}px`;
   circle.classList.add("ripple");
 
   const ripple = targetElement.getElementsByClassName("ripple")[0];
