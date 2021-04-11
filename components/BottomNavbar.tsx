@@ -1,19 +1,20 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx, css, keyframes } from '@emotion/react'
-import React from 'react'
-
-import BurgerMenu from '../components/icons/BurgerMenu'
+import { useRouter } from 'next/router';
+import { createRippleEffect } from '../utils'
 import HomeIcon from '../components/icons/HomeIcon'
 import ListIcon from '../components/icons/ListIcon'
 import MonsterIcon from '../components/icons/MonsterIcon'
 
-export interface IBottomNavbarProps {
-  type?: 'primary' | 'secondary'
-  onClick?: (event: any) => void
-}
+const BottomNavbar = () => {
+  const router = useRouter();
 
-const BottomNavbar = ({ onClick }: IBottomNavbarProps) => {
+  const handleOnClick = (event, to) => {
+    createRippleEffect(event, 'white');
+    router.push(to);
+  };
+
   const animateCirlce = keyframes`
     100% {
         transform: translate(-50%,-35px);
@@ -66,6 +67,10 @@ const BottomNavbar = ({ onClick }: IBottomNavbarProps) => {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+
     a::before {
       content: '';
       width: 7px;
@@ -85,6 +90,9 @@ const BottomNavbar = ({ onClick }: IBottomNavbarProps) => {
       display: block;
       transform-origin: center;
       transition: all 200ms ease-in-out;
+      @media (max-width: 600px) {
+        font-size: 3vw;
+      }
     }
     a:hover::before {
       animation: ${animateCirlce} .5s 1 ease-in-out ;
@@ -103,9 +111,9 @@ const BottomNavbar = ({ onClick }: IBottomNavbarProps) => {
 
   return (
     <ul css={navbarBody}>
-      <li css={baseListItem}><a href="#" css={baseLink}><HomeIcon color="white" /></a></li>
-      <li css={baseListItem}><a href="#" css={baseLink}><ListIcon color="white" /></a></li>
-      <li css={baseListItem}><a href="#" css={baseLink}><MonsterIcon color="white" /></a></li>
+      <li css={baseListItem} onClick={(event) => handleOnClick(event, '/')}><a css={baseLink}><HomeIcon color="white" /></a></li>
+      <li css={baseListItem} onClick={(event) => handleOnClick(event, '/pokemon')}><a css={baseLink}><ListIcon color="white" /></a></li>
+      <li css={baseListItem} onClick={(event) => handleOnClick(event, '/my-pokemon')}><a css={baseLink}><MonsterIcon color="white" /></a></li>
     </ul>
   )
 }
