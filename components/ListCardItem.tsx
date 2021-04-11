@@ -1,6 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx, css } from '@emotion/react'
+import { useRouter } from 'next/router';
 import { createRippleEffect } from '../utils'
 
 export interface IListCardItemProps {
@@ -11,8 +12,11 @@ export interface IListCardItemProps {
 }
 
 const ListCardItem = ({ onClick, id, name, image }: IListCardItemProps) => {
+  const router = useRouter();
+
   const handleOnClick = (event) => {
     createRippleEffect(event, '#f04f5a');
+    router.push(`/pokemon/${name}`)
   };
 
   const cardBody = css`
@@ -37,6 +41,7 @@ const ListCardItem = ({ onClick, id, name, image }: IListCardItemProps) => {
     pointer-events: none;
     font-size: 16px;
     font-size: 2vw;
+    color: #404040;
     @media (max-width: 600px) {
       font-size: 4vw;
     }
