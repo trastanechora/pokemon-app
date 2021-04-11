@@ -1,13 +1,20 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx, css } from '@emotion/react'
+import { useRouter } from 'next/router';
 import PokeballIcon from '../components/icons/PokeballIcon'
-export interface INavbarProps {
-  type?: 'primary' | 'secondary'
-  onClick?: (event: any) => void
-}
+import BackIcon from '../components/icons/BackIcon'
+import { createRippleEffect } from '../utils'
 
-const Navbar = ({ onClick }: INavbarProps) => {
+const Navbar = () => {
+  const router = useRouter();
+
+  const handleOnClick = (event) => {
+    createRippleEffect(event, 'white');
+    router.back()
+  };
+
+
   const navbarBody = css`
     overflow: hidden;
     background-color: #f04f5a;
@@ -46,6 +53,7 @@ const Navbar = ({ onClick }: INavbarProps) => {
     @media (max-width: 960px) {
       width: 100%;
       justify-content: center;
+      padding-left: 0;
     }
   `
 
@@ -60,6 +68,25 @@ const Navbar = ({ onClick }: INavbarProps) => {
     margin-top: 12px
   `
 
+  const backIcon = css`
+    pointer-events: none;
+  `
+
+  const backButton = css`
+    position: absolute;
+    overflow: hidden;
+    cursor: pointer;
+    width: 52px;
+    height: 40px;
+    left: 0;
+    top: 0;
+    text-align: center;
+    padding-top: 12px;
+    @media (min-width: 960px) {
+      display: none;
+    }
+  `
+
   return (
     <div
       css={navbarBody}
@@ -68,6 +95,9 @@ const Navbar = ({ onClick }: INavbarProps) => {
         css={navbarContainer}
       >
         <div css={leftMenuGroup}>
+          <div css={backButton} onClick={handleOnClick}>
+            <BackIcon css={backIcon} color="white" />
+          </div>
           <PokeballIcon css={iconWrapper} color="white" />
           <a
             css={css`
