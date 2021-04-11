@@ -132,6 +132,7 @@ const PokemonDetail = () => {
   const detailInfo = css`
     display: inline-block;
     margin: 4px 8px;
+    color: #404040;
   `
 
   const chipSpan = css`
@@ -158,16 +159,43 @@ const PokemonDetail = () => {
     border: solid 1px;
     color: #f44336;
     border-color: #f44336;
+    margin: 4px;
   `
 
   const outlinedGrayChipSpan = css`
     ${outlinedChipSpan}
     color: gray;
     border-color: gray;
+    font-size: 10px;
+    margin: 4px;
+    border-radius: 12px;
   `
 
   const pokemonMovesWrapper = css`
     text-align: center;
+  `
+
+  const separatorLineAbility = css`
+    border: 1px solid #f44336;
+    width: 100%;
+  `
+
+  const separatorLineMove = css`
+    ${separatorLineAbility}
+    border: 1px solid gray;
+    margin-top: 20px;
+  `
+
+  const abilityLabel = css`
+    font-family: 'Roboto', sans-serif;
+    text-transform: capitalize;
+    margin: 4px 0;
+    color: #f44336;
+  `
+
+  const moveLabel = css`
+    ${abilityLabel}
+    color: gray;
   `
 
   return (
@@ -206,7 +234,9 @@ const PokemonDetail = () => {
                 </div>
               </div>
             </section>
-            <section css={overview}>
+              <section css={overview}>
+                <hr css={separatorLineAbility} />
+                <h3 css={abilityLabel}>Abilities:</h3>
                 <div css={pokemonMovesWrapper}>
                   { data.pokemon.abilities.map((object, i) =>
                     <span
@@ -217,6 +247,8 @@ const PokemonDetail = () => {
                     </span>
                   )}
                 </div>
+                <hr css={separatorLineMove} />
+                <h3 css={moveLabel}>Moves:</h3>
                 <div css={pokemonMovesWrapper}>
                   { data.pokemon.moves.map((object, i) =>
                     <span
