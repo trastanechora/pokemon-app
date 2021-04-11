@@ -3,7 +3,6 @@
 import { jsx, css } from '@emotion/react'
 import { useQuery, gql } from '@apollo/client';
 import ListCardItem from '../components/ListCardItem'
-import { createRippleEffect } from '../utils'
 
 export interface IPokemonListProps {
   type?: 'primary' | 'secondary'
@@ -30,7 +29,7 @@ const GET_POKEMONS = gql`
 
 const gqlVariables = {
   limit: 20,
-  offset: 1,
+  offset: 0,
 };
 
 const PokemonList = () => {
@@ -41,7 +40,6 @@ const PokemonList = () => {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error! {error.message}</div>;
 
-  console.warn('Response from server', data);
   return (
     <div css={css`
       display: flex;

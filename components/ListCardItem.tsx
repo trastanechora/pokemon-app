@@ -52,8 +52,7 @@ const ListCardItem = ({ onClick, id, name, image }: IListCardItemProps) => {
       css={cardBody}
       onClick={handleOnClick}
     >
-      <img
-        css={pokemonImage} src={ image } />
+      <img css={pokemonImage} src={ image } />
       <h2 css={pokemonName}>{ name }</h2>
     </div>
   )
