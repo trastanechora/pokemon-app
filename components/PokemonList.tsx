@@ -1,6 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx, css } from '@emotion/react'
+import { useEffect } from 'react'
 import { useQuery, gql } from '@apollo/client';
 import ListCardItem from '../components/ListCardItem'
 
@@ -33,12 +34,30 @@ const gqlVariables = {
 };
 
 const PokemonList = () => {
-  const { loading, error, data } = useQuery(GET_POKEMONS, {
-    variables: gqlVariables,
+  const { loading, error, data, fetchMore } = useQuery(GET_POKEMONS, {
+    variables: gqlVariables
   });
+
+  const handleScroll = () => {
+    if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight) return;
+    
+    fetchMore({
+      variables: {
+        limit: 20,
+        offset: data ? data.pokemons.results.length : 0
+      },
+    })
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error! {error.message}</div>;
+
+  console.warn('data', data)
 
   return (
     <div css={css`
