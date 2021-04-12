@@ -4,6 +4,7 @@ import { jsx, css, keyframes } from '@emotion/react';
 import { useRouter } from 'next/router';
 import { useQuery, gql } from '@apollo/client';
 import DefaultLayout from '../../layout/Default';
+import PokeballIcon3D from '../../components/icons/PokeballIcon3D';
 
 const PokemonDetail = () => {
   const router = useRouter();
@@ -83,17 +84,19 @@ const PokemonDetail = () => {
 
   const pokemonImage = css`
     height: 240px;
-    // animation: ${bounceAnimation} 2s infinite cubic-bezier(0.280, 0.840, 0.420, 1);
   `;
 
-  const cardBody = css`
+  const boxShadow = css`
     box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%),
       0 1px 5px 0 rgb(0 0 0 / 12%);
+  `
+
+  const cardBody = css`
+    ${boxShadow}
     border-radius: 10px;
     text-align: center;
     position: relative;
     overflow: hidden;
-    cursor: pointer;
     margin: auto;
     margin-top: -1rem;
     background-color: white;
@@ -199,6 +202,37 @@ const PokemonDetail = () => {
     color: gray;
   `;
 
+  const catchButtonContainer = css`
+    font-family: 'Roboto', sans-serif;
+    position: fixed;
+    bottom: 100px;
+    width: 91%;
+    text-align: center;
+    font-size: small;
+    font-weight: 600;
+  `
+
+  const catchButton = css`
+    ${boxShadow}
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    margin: auto;
+    background-color: white;
+    padding: 12px;
+    border: solid 1px;
+    color: #f44336;
+    border: 2px solid #f44336;
+    cursor: pointer;
+    :hover {
+      box-shadow: 0 10px 10px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 82%);
+    }
+  `
+
+  const icon3D = css`
+    animation: ${bounceAnimation} 2s infinite cubic-bezier(0.280, 0.840, 0.420, 1);
+  `
+
   return (
     <DefaultLayout>
       <div>
@@ -259,6 +293,12 @@ const PokemonDetail = () => {
                 ))}
               </div>
             </section>
+            <div css={catchButtonContainer}>
+              <div css={catchButton}>
+                <PokeballIcon3D css={icon3D}/>
+                Catch!
+              </div>
+            </div>
           </div>
         )}
       </div>
