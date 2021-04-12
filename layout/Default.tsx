@@ -6,46 +6,42 @@ import { useRouter } from 'next/router';
 import StoreContext from '../store/context';
 import reducer from '../store/reducer';
 
-import Navbar from '../components/Navbar'
-import BottomNavbar from '../components/BottomNavbar'
+import Navbar from '../components/Navbar';
+import BottomNavbar from '../components/BottomNavbar';
 interface ILayoutProps {
-  headerTitle?: string
-  children?: React.ReactNode
+  headerTitle?: string;
+  children?: React.ReactNode;
 }
 
-const DefaultLayout: React.FC<ILayoutProps> = ({
-  children
-}) => {
-  const router = useRouter()
+const DefaultLayout: React.FC<ILayoutProps> = ({ children }) => {
+  const router = useRouter();
   const initialState = useContext(StoreContext);
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const back = () => {
     router.back();
-  }
+  };
 
   const layoutWrapper = css`
     margin: -8px;
-  `
+  `;
 
   const contentWrapper = css`
     padding: 64px;
     @media (max-width: 600px) {
       padding: 64px 12px;
     }
-  `
+  `;
 
   return (
     <StoreContext.Provider value={{ state, dispatch }}>
       <div css={layoutWrapper}>
-        <main css={contentWrapper}>
-          {children}
-        </main>
+        <main css={contentWrapper}>{children}</main>
         <Navbar />
         <BottomNavbar />
       </div>
     </StoreContext.Provider>
-  )
-}
+  );
+};
 
-export default DefaultLayout
+export default DefaultLayout;

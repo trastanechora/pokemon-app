@@ -1,6 +1,6 @@
 import { useQuery, gql } from '@apollo/client';
 
-import DefaultLayout from '../../layout/Default'
+import DefaultLayout from '../../layout/Default';
 
 const GET_POKEMONS = gql`
   query pokemons($limit: Int, $offset: Int) {
@@ -21,12 +21,12 @@ const GET_POKEMONS = gql`
 
 const gqlVariables = {
   limit: 2,
-  offset: 1,
+  offset: 1
 };
 
 export const FetchDetail = () => {
   const { loading, error, data } = useQuery(GET_POKEMONS, {
-    variables: gqlVariables,
+    variables: gqlVariables
   });
 
   if (loading) return <div>Loading...</div>;
@@ -39,9 +39,9 @@ export const FetchDetail = () => {
 const MyPokemon = () => {
   return (
     <DefaultLayout>
-       <FetchDetail />
+      <FetchDetail />
     </DefaultLayout>
-  )
-}
+  );
+};
 
-export default MyPokemon
+export default MyPokemon;

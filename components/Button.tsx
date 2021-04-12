@@ -1,21 +1,20 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, css, keyframes } from '@emotion/react'
-import React from 'react'
+import { jsx, css, keyframes } from '@emotion/react';
+import React from 'react';
 
-import { createRippleEffect } from '../utils'
-
+import { createRippleEffect } from '../utils';
 
 export interface IButtonProps {
-  type?: 'primary' | 'secondary'
-  onClick?: (event: any) => void
-  href?: string
-  leftIcon?: string
-  rightIcon?: string
-  iconSize?: string
-  expanded?: boolean
-  className?: string
-  children?: React.ReactNode
+  type?: 'primary' | 'secondary';
+  onClick?: (event: any) => void;
+  href?: string;
+  leftIcon?: string;
+  rightIcon?: string;
+  iconSize?: string;
+  expanded?: boolean;
+  className?: string;
+  children?: React.ReactNode;
 }
 
 const Button = ({ type, onClick, children }: IButtonProps) => {
@@ -41,17 +40,14 @@ const Button = ({ type, onClick, children }: IButtonProps) => {
     box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.3);
     cursor: pointer;
     text-align: center;
-    display: inline-block
-  `
+    display: inline-block;
+  `;
 
   return (
-    <div
-      onClick={handleOnClick}
-      css={baseButton}
-    >
-      { children }
+    <div onClick={handleOnClick} css={baseButton}>
+      {children}
     </div>
-  )
-}
+  );
+};
 
-export default Button
+export default Button;

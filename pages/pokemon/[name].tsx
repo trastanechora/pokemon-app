@@ -1,13 +1,13 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, css, keyframes } from '@emotion/react'
-import { useRouter } from 'next/router'
+import { jsx, css, keyframes } from '@emotion/react';
+import { useRouter } from 'next/router';
 import { useQuery, gql } from '@apollo/client';
-import DefaultLayout from '../../layout/Default'
+import DefaultLayout from '../../layout/Default';
 
 const PokemonDetail = () => {
-  const router = useRouter()
-  const { name } = router.query
+  const router = useRouter();
+  const { name } = router.query;
 
   const GET_POKEMON = gql`
     query pokemon($name: String!) {
@@ -47,29 +47,29 @@ const PokemonDetail = () => {
 
   const gqlVariables = {
     name: name
-  }
+  };
 
   const { loading, error, data } = useQuery(GET_POKEMON, {
-    variables: gqlVariables,
+    variables: gqlVariables
   });
 
-  console.warn('data', data)
+  console.warn('data', data);
 
   const detailPageContainer = css`
     width: 100%;
-  `
+  `;
 
   const overview = css`
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 16px;
-  `
+  `;
 
   const pokemonImageContainer = css`
     background-color: #f5f5f5;
     border-radius: 15rem;
-  `
+  `;
 
   const bounceAnimation = keyframes`
     0%   { transform: translateY(0); }
@@ -79,15 +79,16 @@ const PokemonDetail = () => {
     57%  { transform: translateY(-7px); }
     64%  { transform: translateY(0); }
     100% { transform: translateY(0); }
-  `
+  `;
 
   const pokemonImage = css`
     height: 240px;
     // animation: ${bounceAnimation} 2s infinite cubic-bezier(0.280, 0.840, 0.420, 1);
-  `
+  `;
 
   const cardBody = css`
-    box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%);
+    box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%),
+      0 1px 5px 0 rgb(0 0 0 / 12%);
     border-radius: 10px;
     text-align: center;
     position: relative;
@@ -96,7 +97,7 @@ const PokemonDetail = () => {
     margin: auto;
     margin-top: -1rem;
     background-color: white;
-  `
+  `;
 
   const pokemonName = css`
     text-transform: capitalize;
@@ -110,30 +111,30 @@ const PokemonDetail = () => {
     @media (max-width: 600px) {
       font-size: 5vw;
     }
-  `
+  `;
 
   const infoContainer = css`
     display: flex;
     width: 100%;
     margin: 12px 0;
     font-family: 'Roboto', sans-serif;
-  `
+  `;
 
   const leftInfo = css`
     width: 50%;
     text-align: left;
-  `
+  `;
 
   const rightInfo = css`
     width: 50%;
     text-align: right;
-  `
+  `;
 
   const detailInfo = css`
     display: inline-block;
     margin: 4px 8px;
     color: #404040;
-  `
+  `;
 
   const chipSpan = css`
     color: white;
@@ -151,7 +152,7 @@ const PokemonDetail = () => {
     padding: 0 12px;
     vertical-align: middle;
     white-space: nowrap;
-  `
+  `;
 
   const outlinedChipSpan = css`
     ${chipSpan}
@@ -160,7 +161,7 @@ const PokemonDetail = () => {
     color: #f44336;
     border-color: #f44336;
     margin: 4px;
-  `
+  `;
 
   const outlinedGrayChipSpan = css`
     ${outlinedChipSpan}
@@ -169,102 +170,100 @@ const PokemonDetail = () => {
     font-size: 10px;
     margin: 4px;
     border-radius: 12px;
-  `
+  `;
 
   const pokemonMovesWrapper = css`
     text-align: center;
-  `
+  `;
 
   const separatorLineAbility = css`
     border: 1px solid #f44336;
     width: 100%;
-  `
+  `;
 
   const separatorLineMove = css`
     ${separatorLineAbility}
     border: 1px solid gray;
     margin-top: 20px;
-  `
+  `;
 
   const abilityLabel = css`
     font-family: 'Roboto', sans-serif;
     text-transform: capitalize;
     margin: 4px 0;
     color: #f44336;
-  `
+  `;
 
   const moveLabel = css`
     ${abilityLabel}
     color: gray;
-  `
+  `;
 
   return (
     <DefaultLayout>
       <div>
-        { loading ?
-          <div>Loading...</div> :
-          error ?
-          <div>Error! {error.message}</div> :
+        {loading ? (
+          <div>Loading...</div>
+        ) : error ? (
+          <div>Error! {error.message}</div>
+        ) : (
           <div css={detailPageContainer}>
-              <section css={overview}>
-                <div css={pokemonImageContainer}>
-                  <img css={pokemonImage} src={data.pokemon.sprites.front_default} />
-                </div>
-                <div css={cardBody}>
-                  <h2 css={pokemonName}>{ name }</h2>
-                </div>
-                <div css={infoContainer}>
+            <section css={overview}>
+              <div css={pokemonImageContainer}>
+                <img css={pokemonImage} src={data.pokemon.sprites.front_default} />
+              </div>
+              <div css={cardBody}>
+                <h2 css={pokemonName}>{name}</h2>
+              </div>
+              <div css={infoContainer}>
                 <div css={leftInfo}>
-                  <small>Type:</small><br/>
-                  { data.pokemon.types.map((object, i) =>
+                  <small>Type:</small>
+                  <br />
+                  {data.pokemon.types.map((object, i) => (
                     <span
                       key={i}
                       css={css`
                         ${chipSpan}
                         margin-left: 0;
-                      `}
-                      >
-                      { object.type.name }
+                      `}>
+                      {object.type.name}
                     </span>
-                  )}
+                  ))}
                 </div>
                 <div css={rightInfo}>
-                    <small>Height:</small><h3 css={detailInfo}>{data.pokemon.height / 10} m</h3><br/>
-                    <small>Weight:</small><h3 css={detailInfo}>{data.pokemon.weight} kg</h3>
+                  <small>Height:</small>
+                  <h3 css={detailInfo}>{data.pokemon.height / 10} m</h3>
+                  <br />
+                  <small>Weight:</small>
+                  <h3 css={detailInfo}>{data.pokemon.weight} kg</h3>
                 </div>
               </div>
             </section>
-              <section css={overview}>
-                <hr css={separatorLineAbility} />
-                <h3 css={abilityLabel}>Abilities:</h3>
-                <div css={pokemonMovesWrapper}>
-                  { data.pokemon.abilities.map((object, i) =>
-                    <span
-                      key={i}
-                      css={outlinedChipSpan}
-                      >
-                      { object.ability.name }
-                    </span>
-                  )}
-                </div>
-                <hr css={separatorLineMove} />
-                <h3 css={moveLabel}>Moves:</h3>
-                <div css={pokemonMovesWrapper}>
-                  { data.pokemon.moves.map((object, i) =>
-                    <span
-                      key={i}
-                      css={outlinedGrayChipSpan}
-                      >
-                      { object.move.name }
-                    </span>
-                  )}
-                </div>
-            </section>  
+            <section css={overview}>
+              <hr css={separatorLineAbility} />
+              <h3 css={abilityLabel}>Abilities:</h3>
+              <div css={pokemonMovesWrapper}>
+                {data.pokemon.abilities.map((object, i) => (
+                  <span key={i} css={outlinedChipSpan}>
+                    {object.ability.name}
+                  </span>
+                ))}
+              </div>
+              <hr css={separatorLineMove} />
+              <h3 css={moveLabel}>Moves:</h3>
+              <div css={pokemonMovesWrapper}>
+                {data.pokemon.moves.map((object, i) => (
+                  <span key={i} css={outlinedGrayChipSpan}>
+                    {object.move.name}
+                  </span>
+                ))}
+              </div>
+            </section>
           </div>
-        }
+        )}
       </div>
     </DefaultLayout>
-  )
-}
+  );
+};
 
-export default PokemonDetail
+export default PokemonDetail;

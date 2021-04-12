@@ -1,11 +1,11 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, css, keyframes } from '@emotion/react'
+import { jsx, css, keyframes } from '@emotion/react';
 import { useRouter } from 'next/router';
-import { createRippleEffect } from '../utils'
-import HomeIcon from '../components/icons/HomeIcon'
-import ListIcon from '../components/icons/ListIcon'
-import MonsterIcon from '../components/icons/MonsterIcon'
+import { createRippleEffect } from '../utils';
+import HomeIcon from '../components/icons/HomeIcon';
+import ListIcon from '../components/icons/ListIcon';
+import MonsterIcon from '../components/icons/MonsterIcon';
 
 const BottomNavbar = () => {
   const router = useRouter();
@@ -20,7 +20,7 @@ const BottomNavbar = () => {
         transform: translate(-50%,-35px);
         opacity: 1;
     }
-  `
+  `;
   const animateRo = keyframes`
     0% {
         transform: rotate(0deg);
@@ -29,7 +29,7 @@ const BottomNavbar = () => {
     100% {
         transform: rotate(180deg);
     }
-  `
+  `;
 
   const navbarBody = css`
     list-style: none;
@@ -37,7 +37,7 @@ const BottomNavbar = () => {
     background: #f04f5a;
     display: flex;
     flex-direction: row;
-    box-shadow: 0 15px 30px rgba(0,0,0,.2);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
     overflow: hidden;
     position: fixed;
     bottom: 0;
@@ -55,12 +55,12 @@ const BottomNavbar = () => {
     }
 
     li:nth-child(3) a::after {
-        content: 'My Pokemon';
+      content: 'My Pokemon';
     }
     @media (min-width: 960px) {
       display: none;
     }
-  `
+  `;
 
   const baseListItem = css`
     flex: 1;
@@ -80,7 +80,7 @@ const BottomNavbar = () => {
       border-radius: 100%;
       position: absolute;
       left: 50%;
-      transform: translate(-50%,5px);
+      transform: translate(-50%, 5px);
       opacity: 0;
     }
     a::after {
@@ -95,27 +95,39 @@ const BottomNavbar = () => {
       }
     }
     a:hover::before {
-      animation: ${animateCirlce} .5s 1 ease-in-out ;
+      animation: ${animateCirlce} 0.5s 1 ease-in-out;
     }
     a:hover svg {
       color: white;
-      animation: ${animateRo} 0.2s 1 ease-in-out ;
+      animation: ${animateRo} 0.2s 1 ease-in-out;
     }
-  `
+  `;
 
   const baseLink = css`
     text-decoration: none;
     text-align: center;
-    position: relative
-  `
+    position: relative;
+  `;
 
   return (
     <ul css={navbarBody}>
-      <li css={baseListItem} onClick={(event) => handleOnClick(event, '/')}><a css={baseLink}><HomeIcon color="white" /></a></li>
-      <li css={baseListItem} onClick={(event) => handleOnClick(event, '/pokemon')}><a css={baseLink}><ListIcon color="white" /></a></li>
-      <li css={baseListItem} onClick={(event) => handleOnClick(event, '/my-pokemon')}><a css={baseLink}><MonsterIcon color="white" /></a></li>
+      <li css={baseListItem} onClick={(event) => handleOnClick(event, '/')}>
+        <a css={baseLink}>
+          <HomeIcon color="white" />
+        </a>
+      </li>
+      <li css={baseListItem} onClick={(event) => handleOnClick(event, '/pokemon')}>
+        <a css={baseLink}>
+          <ListIcon color="white" />
+        </a>
+      </li>
+      <li css={baseListItem} onClick={(event) => handleOnClick(event, '/my-pokemon')}>
+        <a css={baseLink}>
+          <MonsterIcon color="white" />
+        </a>
+      </li>
     </ul>
-  )
-}
+  );
+};
 
-export default BottomNavbar
+export default BottomNavbar;

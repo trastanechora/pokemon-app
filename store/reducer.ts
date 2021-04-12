@@ -1,16 +1,14 @@
 export default function reducer(state, action) {
   switch (action.type) {
-    case "ADD_MY_POKEMON":
+    case 'ADD_MY_POKEMON':
       return {
         ...state,
-        myPokemons: [...state.myPokemons, ...action.payload],
+        myPokemons: [...state.myPokemons, ...action.payload]
       };
-    case "REMOVE_MY_POKEMON":
-      const newMyPokemons = state.myPokemons.filter(
-        (id) => id !== action.payload.id
-      );
+    case 'REMOVE_MY_POKEMON':
+      const newMyPokemons = state.myPokemons.filter((id) => id !== action.payload.id);
       return {
-        myPokemons: newMyPokemons,
+        myPokemons: newMyPokemons
       };
     default:
       return state;

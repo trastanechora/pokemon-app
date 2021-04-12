@@ -1,11 +1,7 @@
-import DefaultLayout from '../layout/Default'
+import DefaultLayout from '../layout/Default';
 
 const Home = () => {
-  return (
-    <DefaultLayout headerTitle="Pokemon App">
-      Home Page
-    </DefaultLayout>
-  )
-}
+  return <DefaultLayout headerTitle="Pokemon App">Home Page</DefaultLayout>;
+};
 
-export default Home
+export default Home;

@@ -1,7 +1,7 @@
-import { AppProps } from 'next/app'
+import { AppProps } from 'next/app';
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 import { ApolloProvider } from '@apollo/client/react';
-import { offsetLimitPagination } from "@apollo/client/utilities";
+import { offsetLimitPagination } from '@apollo/client/utilities';
 
 const client = new ApolloClient({
   uri: 'https://graphql-pokeapi.vercel.app/api/graphql',
@@ -24,7 +24,7 @@ const client = new ApolloClient({
 
           //   // merge(existing: any, incoming: any, options) {
           //   //   if (!incoming) return existing
-          //   //   if (!existing) return incoming // existing will be empty the first time 
+          //   //   if (!existing) return incoming // existing will be empty the first time
 
           //   //   let result = [...existing.pokemons.results, ...incoming.pokemons.results];
           //   //   return result
@@ -51,6 +51,6 @@ const App = ({ Component, pageProps }: AppProps) => (
       <Component {...pageProps} />
     </ApolloProvider>
   </>
-)
+);
 
-export default App
+export default App;

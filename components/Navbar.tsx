@@ -1,19 +1,18 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, css } from '@emotion/react'
+import { jsx, css } from '@emotion/react';
 import { useRouter } from 'next/router';
-import PokeballIcon from '../components/icons/PokeballIcon'
-import BackIcon from '../components/icons/BackIcon'
-import { createRippleEffect } from '../utils'
+import PokeballIcon from '../components/icons/PokeballIcon';
+import BackIcon from '../components/icons/BackIcon';
+import { createRippleEffect } from '../utils';
 
 const Navbar = () => {
   const router = useRouter();
 
   const handleOnClick = (event) => {
     createRippleEffect(event, 'white');
-    router.back()
+    router.back();
   };
-
 
   const navbarBody = css`
     overflow: hidden;
@@ -21,7 +20,7 @@ const Navbar = () => {
     position: fixed;
     top: 0;
     width: 100%;
-  `
+  `;
 
   const navbarContainer = css`
     width: 100%;
@@ -29,7 +28,7 @@ const Navbar = () => {
     justify-content: space-between;
     max-width: 1080px;
     margin: auto;
-  `
+  `;
 
   const baseLink = css`
     float: left;
@@ -40,12 +39,12 @@ const Navbar = () => {
     text-decoration: none;
     font-size: 17px;
     font-family: 'Roboto', sans-serif;
-  `
+  `;
 
   const titleLink = css`
     font-weight: 700;
     font-size: 20px;
-  `
+  `;
 
   const leftMenuGroup = css`
     display: flex;
@@ -55,22 +54,22 @@ const Navbar = () => {
       justify-content: center;
       padding-left: 0;
     }
-  `
+  `;
 
   const rightMenuGroup = css`
     padding-right: 40px;
     @media (max-width: 960px) {
       display: none;
     }
-  `
+  `;
 
   const iconWrapper = css`
-    margin-top: 12px
-  `
+    margin-top: 12px;
+  `;
 
   const backIcon = css`
     pointer-events: none;
-  `
+  `;
 
   const backButton = css`
     position: absolute;
@@ -85,15 +84,11 @@ const Navbar = () => {
     @media (min-width: 960px) {
       display: none;
     }
-  `
+  `;
 
   return (
-    <div
-      css={navbarBody}
-    >
-      <div
-        css={navbarContainer}
-      >
+    <div css={navbarBody}>
+      <div css={navbarContainer}>
         <div css={leftMenuGroup}>
           <div css={backButton} onClick={handleOnClick}>
             <BackIcon css={backIcon} color="white" />
@@ -104,8 +99,8 @@ const Navbar = () => {
               ${baseLink}
               ${titleLink}
             `}
-          >
-              Pokemon App
+            href="/">
+            Pokemon App
           </a>
         </div>
         <div css={rightMenuGroup}>
@@ -113,18 +108,20 @@ const Navbar = () => {
             css={css`
               ${baseLink}
             `}
-            href="/pokemon">Pokemon List
+            href="/pokemon">
+            Pokemon List
           </a>
           <a
             css={css`
               ${baseLink}
             `}
-            href="/my-pokemon">My Pokemon
+            href="/my-pokemon">
+            My Pokemon
           </a>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
