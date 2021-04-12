@@ -57,16 +57,16 @@ const client = new ApolloClient({
             //   console.warn('incoming', incoming)
             // },
 
-            // keyArgs: false,
-            merge(existing, incoming: any[], options) {
-              if (existing) {
-                
-              }
-              console.warn('[typePolicies - merge] existing', existing)
-              console.warn('[typePolicies - merge] incoming', incoming)
-              console.warn('[typePolicies - merge] options', options)
+            keyArgs: false,
+            merge(existing = [], incoming: any[], options) {
+              // console.warn('[typePolicies - merge] existing', existing)
+              // console.warn('[typePolicies - merge] incoming', incoming)
+              // console.warn('[typePolicies - merge] options', options)
+              console.warn('Total data', [...existing, ...incoming]);
               return [...existing, ...incoming];
             },
+
+            // merge: false
           }
         }
       }
