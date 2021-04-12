@@ -113,7 +113,7 @@ const Navbar = () => {
             css={css`
               ${baseLink}
             `}
-            href="/">Pokemon List
+            href="/pokemon">Pokemon List
           </a>
           <a
             css={css`
