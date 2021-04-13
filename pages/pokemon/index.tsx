@@ -1,9 +1,12 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx } from '@emotion/react';
+import { jsx, css } from '@emotion/react';
+import { useContext, useEffect } from 'react';
 import { useQuery, gql } from '@apollo/client';
+import { store } from '../../store';
 import DefaultLayout from '../../layout/Default';
 import PokemonList from '../../components/PokemonList';
+import { POKEMON_DB } from '../../db';
 
 const GET_POKEMONS = gql`
   query pokemons($limit: Int, $offset: Int) {
@@ -29,9 +32,17 @@ const gqlVariables = {
 };
 
 const PokemonIndex = () => {
+  const { state, dispatch } = useContext(store);
+
   const { loading, error, data } = useQuery(GET_POKEMONS, {
     variables: gqlVariables
   });
+
+  useEffect(() => {
+    POKEMON_DB.getPokemons().then((result) => {
+      dispatch({ type: 'SET_MY_POKEMON_LIST', payload: result });
+    });
+  }, []);
 
   if (loading)
     return (
@@ -49,6 +60,25 @@ const PokemonIndex = () => {
 
   return (
     <DefaultLayout>
+      <div css={css`
+        display: flex;
+        place-content: space-between;
+        font-family: 'Roboto', sans-serif;
+        color: #f44336;
+        @media (max-width: 960px) {
+          display: block;
+          text-align: center;
+          h3 {
+            margin-bottom: 4px;
+          }
+          h4 {
+            margin-top: 4px;
+          }
+        }
+      `}>
+        <h3>Pokemon List</h3>
+        <h4>Total owned: {state.myPokemons.length}</h4>
+      </div>
       <PokemonList entries={data.pokemons.results || []} />
     </DefaultLayout>
   );
