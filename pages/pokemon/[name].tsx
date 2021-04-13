@@ -3,12 +3,25 @@
 import { jsx, css, keyframes } from '@emotion/react';
 import { useRouter } from 'next/router';
 import { useQuery, gql } from '@apollo/client';
+import { useContext, useEffect } from 'react';
+import { POKEMON_DB } from '../../db';
+import { store } from '../../store';
 import DefaultLayout from '../../layout/Default';
 import PokeballIcon3D from '../../components/icons/PokeballIcon3D';
+import ReleaseIcon from '../../components/icons/ReleaseIcon';
 
 const PokemonDetail = () => {
   const router = useRouter();
-  const { name } = router.query;
+  const { state, dispatch } = useContext(store);
+  const { name, uuid } = router.query;
+
+  useEffect(() => {
+    POKEMON_DB.getPokemonById(uuid).then((result) => {
+      dispatch({ type: 'SET_SELECTED_POKEMON', payload: result });
+    }).catch(() => {
+      router.replace('/my-pokemon');
+    });
+  }, [uuid]);
 
   const GET_POKEMON = gql`
     query pokemon($name: String!) {
@@ -55,8 +68,12 @@ const PokemonDetail = () => {
   });
 
   const catchPokemon = () => {
-    router.push(`/my-pokemon/action?target=${name}`)
-  }
+    router.push(`/my-pokemon/action?target=${name}`);
+  };
+
+  const releasePokemon = () => {
+    router.push(`/my-pokemon/action?target=${name}&uuid=${uuid}`);
+  };
 
   const detailPageContainer = css`
     width: 100%;
@@ -91,7 +108,7 @@ const PokemonDetail = () => {
   const boxShadow = css`
     box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%),
       0 1px 5px 0 rgb(0 0 0 / 12%);
-  `
+  `;
 
   const cardBody = css`
     ${boxShadow}
@@ -212,7 +229,7 @@ const PokemonDetail = () => {
     text-align: center;
     font-size: small;
     font-weight: 600;
-  `
+  `;
 
   const catchButton = css`
     ${boxShadow}
@@ -227,12 +244,24 @@ const PokemonDetail = () => {
     border: 2px solid #f44336;
     cursor: pointer;
     :hover {
-      box-shadow: 0 10px 10px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 82%);
+      box-shadow: 0 10px 10px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%),
+        0 1px 5px 0 rgb(0 0 0 / 82%);
     }
-  `
+  `;
 
   const icon3D = css`
-    animation: ${bounceAnimation} 2s infinite cubic-bezier(0.280, 0.840, 0.420, 1);
+    animation: ${bounceAnimation} 2s infinite cubic-bezier(0.28, 0.84, 0.42, 1);
+  `;
+
+  const releaseIcon = css`
+    width: 100%;
+    margin-bottom: 12px;
+    margin-top: 12px;
+  `;
+
+  const slideToTop = css`
+    margin-top: -24px;
+    margin-bottom: 12px;
   `
 
   return (
@@ -249,7 +278,16 @@ const PokemonDetail = () => {
                 <img css={pokemonImage} src={data.pokemon.sprites.front_default} />
               </div>
               <div css={cardBody}>
-                <h2 css={pokemonName}>{name}</h2>
+                {uuid ? (
+                  <div>
+                    <h2 css={pokemonName}>{state.selectedPokemon.nickname}</h2>
+                    <div css={slideToTop}>
+                      <span css={chipSpan}>{state.selectedPokemon.name}</span>
+                    </div>
+                  </div>
+                ) : (
+                  <h2 css={pokemonName}>{name}</h2>
+                )}
               </div>
               <div css={infoContainer}>
                 <div css={leftInfo}>
@@ -296,10 +334,17 @@ const PokemonDetail = () => {
               </div>
             </section>
             <div css={catchButtonContainer}>
-              <div css={catchButton} onClick={catchPokemon}>
-                <PokeballIcon3D css={icon3D}/>
-                Catch!
-              </div>
+              {uuid ? (
+                <div css={catchButton} onClick={releasePokemon}>
+                  <ReleaseIcon css={releaseIcon} color="red" />
+                  Release!
+                </div>
+              ) : (
+                <div css={catchButton} onClick={catchPokemon}>
+                  <PokeballIcon3D css={icon3D} />
+                  Catch!
+                </div>
+              )}
             </div>
           </div>
         )}
