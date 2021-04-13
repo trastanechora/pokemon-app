@@ -82,6 +82,7 @@ const ListCardItem = ({ pokemonObject, showOwned }: IListCardItemProps) => {
   return (
     <div css={cardBody} onClick={handleOnClick}>
       <img
+        loading="lazy"
         css={pokemonImage}
         src={showOwned ? pokemonObject.sprites.front_default : pokemonObject.image}
       />

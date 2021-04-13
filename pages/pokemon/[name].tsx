@@ -279,7 +279,7 @@ const PokemonDetail = () => {
           <div css={detailPageContainer}>
             <section css={overview}>
               <div css={pokemonImageContainer}>
-                <img css={pokemonImage} src={data.pokemon.sprites.front_default} />
+                <img loading="lazy" css={pokemonImage} src={data.pokemon.sprites.front_default} />
               </div>
               <div css={cardBody}>
                 {uuid ? (

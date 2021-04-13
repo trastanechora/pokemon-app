@@ -170,7 +170,7 @@ const MyPokemonAction = () => {
         <div css={container}>
           <div css={[section, gotcha]}>GOTCHA!!</div>
           <div css={[section, pokemonImageContainer]}>
-            <img css={pokemonImage} src={data.pokemon.sprites.front_default} />
+            <img loading="lazy" css={pokemonImage} src={data.pokemon.sprites.front_default} />
           </div>
           <div css={section}>
             <span css={pokemonName}>{data.pokemon.name}</span> was caught!
@@ -188,7 +188,7 @@ const MyPokemonAction = () => {
         <div css={container}>
           <div css={[section, ohno]}>OH NO!!</div>
           <div css={[section, pokemonImageContainer]}>
-            <img css={pokemonImage} src={data.pokemon.sprites.back_default} />
+            <img loading="lazy" css={pokemonImage} src={data.pokemon.sprites.back_default} />
           </div>
           <div css={section}>
             We have FAILED to catch <span css={pokemonName}>{data.pokemon.name}</span>,<br />
@@ -203,7 +203,7 @@ const MyPokemonAction = () => {
         <div css={container}>
           <div css={[section, ohno]}>GOOD BYE!!</div>
           <div css={[section, pokemonImageContainer]}>
-            <img css={pokemonImage} src={data.pokemon.sprites.back_default} />
+            <img loading="lazy" css={pokemonImage} src={data.pokemon.sprites.back_default} />
           </div>
           <div css={section}>
             Nice to be your partner <span css={pokemonName}>{state.selectedPokemon.nickname}</span>,
