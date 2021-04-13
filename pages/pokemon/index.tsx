@@ -60,22 +60,23 @@ const PokemonIndex = () => {
 
   return (
     <DefaultLayout>
-      <div css={css`
-        display: flex;
-        place-content: space-between;
-        font-family: 'Roboto', sans-serif;
-        color: #f44336;
-        @media (max-width: 960px) {
-          display: block;
-          text-align: center;
-          h3 {
-            margin-bottom: 4px;
+      <div
+        css={css`
+          display: flex;
+          place-content: space-between;
+          font-family: 'Roboto', sans-serif;
+          color: #f44336;
+          @media (max-width: 960px) {
+            display: block;
+            text-align: center;
+            h3 {
+              margin-bottom: 4px;
+            }
+            h4 {
+              margin-top: 4px;
+            }
           }
-          h4 {
-            margin-top: 4px;
-          }
-        }
-      `}>
+        `}>
         <h3>Pokemon List</h3>
         <h4>Total owned: {state.myPokemons.length}</h4>
       </div>

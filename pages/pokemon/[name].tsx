@@ -16,11 +16,13 @@ const PokemonDetail = () => {
   const { name, uuid } = router.query;
 
   useEffect(() => {
-    POKEMON_DB.getPokemonById(uuid).then((result) => {
-      dispatch({ type: 'SET_SELECTED_POKEMON', payload: result });
-    }).catch(() => {
-      router.replace('/my-pokemon');
-    });
+    POKEMON_DB.getPokemonById(uuid)
+      .then((result) => {
+        dispatch({ type: 'SET_SELECTED_POKEMON', payload: result });
+      })
+      .catch(() => {
+        router.replace('/my-pokemon');
+      });
   }, [uuid]);
 
   const GET_POKEMON = gql`
@@ -262,7 +264,7 @@ const PokemonDetail = () => {
   const slideToTop = css`
     margin-top: -24px;
     margin-bottom: 12px;
-  `
+  `;
 
   return (
     <DefaultLayout>

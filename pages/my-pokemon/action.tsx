@@ -61,11 +61,13 @@ const MyPokemonAction = () => {
 
   useEffect(() => {
     if (uuid) {
-      POKEMON_DB.getPokemonById(uuid).then((result) => {
-        dispatch({ type: 'SET_SELECTED_POKEMON', payload: result });
-      }).catch(() => {
-        router.replace('/my-pokemon');
-      });
+      POKEMON_DB.getPokemonById(uuid)
+        .then((result) => {
+          dispatch({ type: 'SET_SELECTED_POKEMON', payload: result });
+        })
+        .catch(() => {
+          router.replace('/my-pokemon');
+        });
       POKEMON_DB.releasePokemon(state.selectedPokemon);
     } else {
       const randomResult = tryCatchPokemon();
@@ -153,7 +155,7 @@ const MyPokemonAction = () => {
 
   return (
     <DefaultLayout>
-      { !uuid && isSuccess ? (
+      {!uuid && isSuccess ? (
         <div css={container}>
           <div css={[section, gotcha]}>GOTCHA!!</div>
           <div css={[section, pokemonImageContainer]}>
@@ -192,10 +194,14 @@ const MyPokemonAction = () => {
             <img css={pokemonImage} src={data.pokemon.sprites.back_default} />
           </div>
           <div css={section}>
-            Nice to be your partner <span css={pokemonName}>{state.selectedPokemon.nickname}</span>,<br />
+            Nice to be your partner <span css={pokemonName}>{state.selectedPokemon.nickname}</span>,
+            <br />
             Have a wonderful life!
           </div>
-          <div css={[section, instruction]}><span css={pokemonName}>{state.selectedPokemon.nickname}</span> has successfuly released to the wild.</div>
+          <div css={[section, instruction]}>
+            <span css={pokemonName}>{state.selectedPokemon.nickname}</span> has successfuly released
+            to the wild.
+          </div>
           <div css={section}>
             <Button onClick={onRelease}>OK</Button>
           </div>
