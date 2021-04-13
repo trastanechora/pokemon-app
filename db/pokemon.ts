@@ -89,6 +89,28 @@ export const POKEMON_DB: any = {
     });
   },
   /* ------------------------------------
+  => [GET] Get Pokemon by UUID
+  ------------------------------------ */
+  async getPokemonById(uuid: string): Promise<Pokemon> {
+    const db: any = await this.getDb();
+    return new Promise((resolve, reject) => {
+      const trans = db.transaction(['pokemons'], 'readonly');
+      const pokemonStore = trans.objectStore('pokemons');
+      const getPokemonRequest = pokemonStore.openCursor();
+      getPokemonRequest.onsuccess = (e: any) => {
+        const result = e.target.result;
+        if (result) {
+          if (result.value.uuid === uuid) {
+            resolve(result.value);
+          }
+          result.continue();
+        } else {
+          reject('Cannot find the pokemon');
+        }
+      };
+    });
+  },
+  /* ------------------------------------
   => [PUT] Edit Pokemon
   ------------------------------------ */
   async editPokemon(pokemon: Pokemon): Promise<Pokemon> {
