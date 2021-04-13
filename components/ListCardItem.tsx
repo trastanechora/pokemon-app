@@ -15,7 +15,11 @@ const ListCardItem = ({ pokemonObject, showOwned }: IListCardItemProps) => {
 
   const handleOnClick = (event) => {
     createRippleEffect(event, '#f04f5a');
-    router.push(`/pokemon/${pokemonObject.name}`);
+    if (showOwned) {
+      router.push(`/pokemon/${pokemonObject.name}?uuid=${pokemonObject.uuid}`);
+    } else {
+      router.push(`/pokemon/${pokemonObject.name}`);
+    }
   };
 
   const cardBody = css`
@@ -73,20 +77,21 @@ const ListCardItem = ({ pokemonObject, showOwned }: IListCardItemProps) => {
 
   const slideToBottom = css`
     margin-bottom: -20px;
-  `
+  `;
 
   return (
     <div css={cardBody} onClick={handleOnClick}>
-      <img css={pokemonImage} src={showOwned ? pokemonObject.sprites.front_default : pokemonObject.image} />
-      { showOwned ?
+      <img
+        css={pokemonImage}
+        src={showOwned ? pokemonObject.sprites.front_default : pokemonObject.image}
+      />
+      {showOwned ? (
         <div css={slideToBottom}>
-          <span
-            css={chipSpan}>
-              {pokemonObject.name}
-          </span>
-        </div> :
+          <span css={chipSpan}>{pokemonObject.name}</span>
+        </div>
+      ) : (
         ''
-      }
+      )}
       <h2 css={pokemonName}>{showOwned ? pokemonObject.nickname : pokemonObject.name}</h2>
     </div>
   );
