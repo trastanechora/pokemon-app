@@ -3,20 +3,19 @@
 import { jsx, css } from '@emotion/react';
 import { useRouter } from 'next/router';
 import { createRippleEffect } from '../utils';
+import { Pokemon } from '../types';
 
 export interface IListCardItemProps {
-  onClick?: (event: any) => void;
-  id?: string;
-  name?: string;
-  image?: string;
+  pokemonObject?: Pokemon;
+  showOwned?: boolean;
 }
 
-const ListCardItem = ({ onClick, id, name, image }: IListCardItemProps) => {
+const ListCardItem = ({ pokemonObject, showOwned }: IListCardItemProps) => {
   const router = useRouter();
 
   const handleOnClick = (event) => {
     createRippleEffect(event, '#f04f5a');
-    router.push(`/pokemon/${name}`);
+    router.push(`/pokemon/${pokemonObject.name}`);
   };
 
   const cardBody = css`
@@ -43,15 +42,52 @@ const ListCardItem = ({ onClick, id, name, image }: IListCardItemProps) => {
     font-size: 16px;
     font-size: 2vw;
     color: #404040;
+    padding-left: 12px;
+    padding-right: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     @media (max-width: 600px) {
       font-size: 4vw;
     }
   `;
 
+  const chipSpan = css`
+    color: white;
+    background-color: #f44336;
+    font-family: 'Roboto', sans-serif;
+    text-transform: capitalize;
+    border-radius: 16px;
+    font-size: 10px;
+    height: 24px;
+    margin: 8px;
+    align-items: center;
+    display: inline-flex;
+    line-height: 20px;
+    max-width: 100%;
+    padding: 0 8px;
+    vertical-align: middle;
+    white-space: nowrap;
+    margin-left: 0;
+  `;
+
+  const slideToBottom = css`
+    margin-bottom: -20px;
+  `
+
   return (
     <div css={cardBody} onClick={handleOnClick}>
-      <img css={pokemonImage} src={image} />
-      <h2 css={pokemonName}>{name}</h2>
+      <img css={pokemonImage} src={showOwned ? pokemonObject.sprites.front_default : pokemonObject.image} />
+      { showOwned ?
+        <div css={slideToBottom}>
+          <span
+            css={chipSpan}>
+              {pokemonObject.name}
+          </span>
+        </div> :
+        ''
+      }
+      <h2 css={pokemonName}>{showOwned ? pokemonObject.nickname : pokemonObject.name}</h2>
     </div>
   );
 };
