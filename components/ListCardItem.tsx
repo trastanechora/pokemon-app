@@ -76,7 +76,7 @@ const ListCardItem = ({ pokemonObject, showOwned }: IListCardItemProps) => {
   `;
 
   const slideToBottom = css`
-    margin-bottom: -20px;
+    margin-bottom: -16px;
   `;
 
   return (
