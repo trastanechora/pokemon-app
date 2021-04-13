@@ -54,7 +54,9 @@ const PokemonDetail = () => {
     variables: gqlVariables
   });
 
-  console.warn('data', data);
+  const catchPokemon = () => {
+    router.push(`/my-pokemon/action?target=${name}`)
+  }
 
   const detailPageContainer = css`
     width: 100%;
@@ -294,7 +296,7 @@ const PokemonDetail = () => {
               </div>
             </section>
             <div css={catchButtonContainer}>
-              <div css={catchButton}>
+              <div css={catchButton} onClick={catchPokemon}>
                 <PokeballIcon3D css={icon3D}/>
                 Catch!
               </div>
