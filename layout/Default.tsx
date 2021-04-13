@@ -3,7 +3,6 @@
 import { jsx, css } from '@emotion/react';
 import React, { useContext, useReducer } from 'react';
 import { useRouter } from 'next/router';
-import StoreContext from '../store/context';
 import reducer from '../store/reducer';
 
 import Navbar from '../components/Navbar';
@@ -15,8 +14,6 @@ interface ILayoutProps {
 
 const DefaultLayout: React.FC<ILayoutProps> = ({ children }) => {
   const router = useRouter();
-  const initialState = useContext(StoreContext);
-  const [state, dispatch] = useReducer(reducer, initialState);
 
   const back = () => {
     router.back();
@@ -34,13 +31,11 @@ const DefaultLayout: React.FC<ILayoutProps> = ({ children }) => {
   `;
 
   return (
-    <StoreContext.Provider value={{ state, dispatch }}>
-      <div css={layoutWrapper}>
-        <main css={contentWrapper}>{children}</main>
-        <Navbar />
-        <BottomNavbar />
-      </div>
-    </StoreContext.Provider>
+    <div css={layoutWrapper}>
+      <main css={contentWrapper}>{children}</main>
+      <Navbar />
+      <BottomNavbar />
+    </div>
   );
 };
 
