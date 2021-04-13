@@ -7,6 +7,11 @@ export default function reducer(state, action) {
         ...state,
         myPokemons: action.payload
       };
+    case 'SET_SELECTED_POKEMON':
+      return {
+        ...state,
+        selectedPokemon: action.payload
+      };
     case 'ADD_MY_POKEMON':
       POKEMON_DB.catchPokemon(action.payload);
       return {

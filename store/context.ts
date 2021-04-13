@@ -2,7 +2,8 @@ import { createContext } from 'react';
 import { PokemonState, PokemonActions } from '../types';
 
 export const defaultState: any = {
-  myPokemons: []
+  myPokemons: [],
+  selectedPokemon: {}
 };
 
 export const store = createContext(defaultState);
