@@ -1,12 +1,21 @@
+import { POKEMON_DB } from '../db';
+
 export default function reducer(state, action) {
   switch (action.type) {
-    case 'ADD_MY_POKEMON':
+    case 'SET_MY_POKEMON_LIST':
       return {
         ...state,
-        myPokemons: [...state.myPokemons, ...action.payload]
+        myPokemons: action.payload
+      };
+    case 'ADD_MY_POKEMON':
+      POKEMON_DB.catchPokemon(action.payload);
+      return {
+        ...state,
+        myPokemons: [...state.myPokemons, action.payload]
       };
     case 'REMOVE_MY_POKEMON':
-      const newMyPokemons = state.myPokemons.filter((id) => id !== action.payload.id);
+      POKEMON_DB.releasePokemon(action.payload);
+      const newMyPokemons = state.myPokemons.filter((uuid) => uuid !== action.payload.uuid);
       return {
         myPokemons: newMyPokemons
       };
