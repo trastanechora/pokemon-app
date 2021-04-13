@@ -50,6 +50,7 @@ export interface PokemonsResponse {
 
 export interface PokemonState {
   myPokemon: Pokemon[];
+  selectedPokemon: Pokemon;
 }
 
 export interface PokemonProviderValue {
@@ -59,5 +60,6 @@ export interface PokemonProviderValue {
 
 export type PokemonActions =
   | { type: 'SET_MY_POKEMON_LIST' }
-  | { type: 'ADD_MY_POKEMON'; payload: any }
-  | { type: 'REMOVE_MY_POKEMON'; payload: any };
+  | { type: 'SET_SELECTED_POKEMON'; payload: Pokemon }
+  | { type: 'ADD_MY_POKEMON'; payload: Pokemon }
+  | { type: 'REMOVE_MY_POKEMON'; payload: Pokemon };
