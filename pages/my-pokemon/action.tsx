@@ -53,11 +53,18 @@ const instruction = css`
   margin-top: 60px;
 `;
 
+const warning = css`
+  font-size: small;
+  color: red;
+`
+
 const MyPokemonAction = () => {
   const { state, dispatch } = useContext(store);
 
   const [nickname, setNickname] = useState<string>('');
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>('');
+
 
   useEffect(() => {
     if (uuid) {
@@ -86,8 +93,12 @@ const MyPokemonAction = () => {
   };
 
   const onSuccess = () => {
-    dispatch({ type: 'ADD_MY_POKEMON', payload: { ...data.pokemon, nickname } });
-    router.replace('/my-pokemon');
+    POKEMON_DB.catchPokemon({ ...data.pokemon, nickname }).then(() => {
+      dispatch({ type: 'ADD_MY_POKEMON', payload: { ...data.pokemon, nickname } });
+      router.replace('/my-pokemon');
+    }).catch((err: string) => {
+      setErrorMessage(err);
+    });
   };
 
   const onFailed = () => {
@@ -168,6 +179,7 @@ const MyPokemonAction = () => {
           <div css={section}>
             <input type="text" value={nickname} onChange={handleNicknameChange} />
           </div>
+          <div css={[section, warning]}>{errorMessage ? errorMessage : ''}</div>
           <div css={section}>
             <Button onClick={onSuccess}>OK</Button>
           </div>
