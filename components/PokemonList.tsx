@@ -2,13 +2,14 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/react';
 import ListCardItem from '../components/ListCardItem';
+import { Pokemon } from '../types';
 
 export interface IPokemonListProps {
-  entries?: any;
-  onLoadMore?: () => void;
+  entries?: Pokemon[];
+  showOwned?: boolean;
 }
 
-const PokemonList = ({ entries, onLoadMore }: IPokemonListProps) => {
+const PokemonList = ({ entries, showOwned }: IPokemonListProps) => {
   return (
     <div
       css={css`
@@ -29,7 +30,7 @@ const PokemonList = ({ entries, onLoadMore }: IPokemonListProps) => {
               min-width: 50%;
             }
           `}>
-          <ListCardItem name={object.name} image={object.image} />
+          <ListCardItem pokemonObject={object} showOwned={showOwned} />
         </div>
       ))}
     </div>
