@@ -7,6 +7,7 @@ import { store } from '../../store';
 import DefaultLayout from '../../layout/Default';
 import PokemonList from '../../components/PokemonList';
 import Loading from '../../components/Loading';
+import Head from '../../components/Head';
 import { POKEMON_DB } from '../../db';
 
 const GET_POKEMONS = gql`
@@ -61,6 +62,10 @@ const PokemonIndex = () => {
 
   return (
     <DefaultLayout>
+      <Head
+        title="List Pokemon Page"
+        description="List Pokemon Page | Pokemon App made with ❤ by @trastanechora"
+      />
       <div
         css={css`
           display: flex;

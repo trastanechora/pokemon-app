@@ -9,6 +9,7 @@ import { POKEMON_DB } from '../../db';
 import DefaultLayout from '../../layout/Default';
 import Loading from '../../components/Loading';
 import Button from '../../components/Button';
+import Head from '../../components/Head';
 
 const container = css`
   font-family: 'Roboto', sans-serif;
@@ -170,6 +171,10 @@ const MyPokemonAction = () => {
     <DefaultLayout>
       {!uuid && isSuccess ? (
         <div css={container}>
+          <Head
+            title={`GOTCHA!! ${data.pokemon.name} was caught!`}
+            description="Pokemon App made with ❤ by @trastanechora"
+          />
           <div css={[section, gotcha]}>GOTCHA!!</div>
           <div css={[section, pokemonImageContainer]}>
             <img loading="lazy" css={pokemonImage} src={data.pokemon.sprites.front_default} />
@@ -188,6 +193,10 @@ const MyPokemonAction = () => {
         </div>
       ) : !uuid && !isSuccess ? (
         <div css={container}>
+          <Head
+            title={`OH NO!! ${data.pokemon.name} ran away!`}
+            description="Pokemon App made with ❤ by @trastanechora"
+          />
           <div css={[section, ohno]}>OH NO!!</div>
           <div css={[section, pokemonImageContainer]}>
             <img loading="lazy" css={pokemonImage} src={data.pokemon.sprites.back_default} />
@@ -203,6 +212,10 @@ const MyPokemonAction = () => {
         </div>
       ) : (
         <div css={container}>
+          <Head
+            title={`GOOD BYE!! ${data.pokemon.name}, we will missing you :(`}
+            description="Pokemon App made with ❤ by @trastanechora"
+          />
           <div css={[section, ohno]}>GOOD BYE!!</div>
           <div css={[section, pokemonImageContainer]}>
             <img loading="lazy" css={pokemonImage} src={data.pokemon.sprites.back_default} />

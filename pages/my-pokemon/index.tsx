@@ -5,6 +5,7 @@ import { useContext, useEffect } from 'react';
 import { store } from '../../store';
 import DefaultLayout from '../../layout/Default';
 import PokemonList from '../../components/PokemonList';
+import Head from '../../components/Head';
 import { POKEMON_DB } from '../../db';
 
 const MyPokemon = () => {
@@ -18,6 +19,10 @@ const MyPokemon = () => {
 
   return (
     <DefaultLayout>
+      <Head
+        title="List of My Pokemon Page"
+        description="List of My Pokemon Page | Pokemon App made with ❤ by @trastanechora"
+      />
       <div
         css={css`
           display: flex;

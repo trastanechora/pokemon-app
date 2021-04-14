@@ -10,6 +10,7 @@ import DefaultLayout from '../../layout/Default';
 import PokeballIcon3D from '../../components/icons/PokeballIcon3D';
 import ReleaseIcon from '../../components/icons/ReleaseIcon';
 import Loading from '../../components/Loading';
+import Head from '../../components/Head';
 
 const PokemonDetail = () => {
   const router = useRouter();
@@ -278,6 +279,10 @@ const PokemonDetail = () => {
           <div>Error! {error.message}</div>
         ) : (
           <div css={detailPageContainer}>
+            <Head
+              title={`${data.pokemon.name} Pokemon Page`}
+              description={`${data.pokemon.name} Pokemon Page | Pokemon App made with ❤ by @trastanechora`}
+            />
             <section css={overview}>
               <div css={pokemonImageContainer}>
                 <img loading="lazy" css={pokemonImage} src={data.pokemon.sprites.front_default} />

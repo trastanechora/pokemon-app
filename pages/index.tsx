@@ -4,6 +4,7 @@ import { jsx, css } from '@emotion/react';
 import DefaultLayout from '../layout/Default';
 import Image from 'next/image';
 import Button from '../components/Button';
+import Head from '../components/Head';
 import { useRouter } from 'next/router';
 
 const section = css`
@@ -29,6 +30,7 @@ const Home = () => {
 
   return (
     <DefaultLayout headerTitle="Pokemon App">
+      <Head title="Home Page" description="Home Page | Pokemon App made with ❤ by @trastanechora" />
       <div css={section}>
         <Image src="/pokemon_logo.svg" alt="logo" width="240" height="240" />
       </div>
