@@ -86,7 +86,7 @@ const ListCardItem = ({ pokemonObject, showOwned }: IListCardItemProps) => {
   `;
 
   return (
-    <div css={cardBody} onClick={handleOnClick}>
+    <div css={cardBody} onClick={handleOnClick} role="pokemon-card">
       <img
         loading="lazy"
         css={pokemonImage}
