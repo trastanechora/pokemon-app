@@ -1,0 +1,23 @@
+name: Pokemon App CI
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  test_web:
+    runs-on: ubuntu-latest
+    name: Install Dependency & Test
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: Setup and run tests
+        working-directory: ./
+        run: |
+          rm -rf node-modules
+          yarn install
+          yarn test
