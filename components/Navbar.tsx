@@ -2,7 +2,7 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/react';
 import { useRouter } from 'next/router';
-import Link from 'next/link'
+import Link from 'next/link';
 import PokeballIcon from '../components/icons/PokeballIcon';
 import BackIcon from '../components/icons/BackIcon';
 import { createRippleEffect } from '../utils';
@@ -100,9 +100,8 @@ const Navbar = () => {
               css={css`
                 ${baseLink}
                 ${titleLink}
-              `}
-              >
-                Pokemon App
+              `}>
+              Pokemon App
             </a>
           </Link>
         </div>
@@ -111,20 +110,18 @@ const Navbar = () => {
             <a
               css={css`
                 ${baseLink}
-              `}
-            >
-                Pokemon List
+              `}>
+              Pokemon List
             </a>
           </Link>
           <Link href="/my-pokemon">
-          <a
-            css={css`
-              ${baseLink}
-            `}
-            >
+            <a
+              css={css`
+                ${baseLink}
+              `}>
               My Pokemon
-          </a>
-            </Link>
+            </a>
+          </Link>
         </div>
       </div>
     </div>
