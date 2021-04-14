@@ -2,6 +2,7 @@
 /** @jsx jsx */
 import { jsx, css, keyframes } from '@emotion/react';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 import { createRippleEffect } from '../utils';
 import HomeIcon from '../components/icons/HomeIcon';
 import ListIcon from '../components/icons/ListIcon';
@@ -14,6 +15,14 @@ const BottomNavbar = () => {
     createRippleEffect(event, 'white');
     router.push(to);
   };
+
+  useEffect(() => {
+    router.prefetch('/');
+    router.prefetch('/pokemon');
+    router.prefetch('/my-pokemon');
+    router.prefetch('/my-pokemon');
+    router.prefetch('/my-pokemon/action');
+  }, []);
 
   const animateCirlce = keyframes`
     100% {

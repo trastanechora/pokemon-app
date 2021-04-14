@@ -2,6 +2,7 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/react';
 import { useRouter } from 'next/router';
+import Link from 'next/link'
 import PokeballIcon from '../components/icons/PokeballIcon';
 import BackIcon from '../components/icons/BackIcon';
 import { createRippleEffect } from '../utils';
@@ -94,30 +95,36 @@ const Navbar = () => {
             <BackIcon css={backIcon} color="white" />
           </div>
           <PokeballIcon css={iconWrapper} color="white" />
-          <a
-            css={css`
-              ${baseLink}
-              ${titleLink}
-            `}
-            href="/">
-            Pokemon App
-          </a>
+          <Link href="/">
+            <a
+              css={css`
+                ${baseLink}
+                ${titleLink}
+              `}
+              >
+                Pokemon App
+            </a>
+          </Link>
         </div>
         <div css={rightMenuGroup}>
+          <Link href="/pokemon">
+            <a
+              css={css`
+                ${baseLink}
+              `}
+            >
+                Pokemon List
+            </a>
+          </Link>
+          <Link href="/my-pokemon">
           <a
             css={css`
               ${baseLink}
             `}
-            href="/pokemon">
-            Pokemon List
+            >
+              My Pokemon
           </a>
-          <a
-            css={css`
-              ${baseLink}
-            `}
-            href="/my-pokemon">
-            My Pokemon
-          </a>
+            </Link>
         </div>
       </div>
     </div>

@@ -2,6 +2,7 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/react';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react'
 import { createRippleEffect } from '../utils';
 import { Pokemon } from '../types';
 
@@ -21,6 +22,10 @@ const ListCardItem = ({ pokemonObject, showOwned }: IListCardItemProps) => {
       router.push(`/pokemon/${pokemonObject.name}`);
     }
   };
+
+  useEffect(() => {
+    router.prefetch('/pokemon/[name]', `/pokemon/${pokemonObject.name}`)
+  }, [])
 
   const cardBody = css`
     box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%),
