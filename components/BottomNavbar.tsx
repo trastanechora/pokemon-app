@@ -55,15 +55,15 @@ const BottomNavbar = () => {
     margin: 0;
     padding: 0;
 
-    li:nth-child(1) a::after {
+    li:nth-of-type(1) a::after {
       content: 'Home';
     }
 
-    li:nth-child(2) a::after {
+    li:nth-of-type(2) a::after {
       content: 'Pokemon List';
     }
 
-    li:nth-child(3) a::after {
+    li:nth-of-type(3) a::after {
       content: 'My Pokemon';
     }
     @media (min-width: 960px) {
@@ -121,17 +121,17 @@ const BottomNavbar = () => {
   return (
     <ul css={navbarBody}>
       <li css={baseListItem} onClick={(event) => handleOnClick(event, '/')}>
-        <a css={baseLink}>
+        <a css={baseLink} role="bottom-navigation-button">
           <HomeIcon color="white" />
         </a>
       </li>
       <li css={baseListItem} onClick={(event) => handleOnClick(event, '/pokemon')}>
-        <a css={baseLink}>
+        <a css={baseLink} role="bottom-navigation-button">
           <ListIcon color="white" />
         </a>
       </li>
       <li css={baseListItem} onClick={(event) => handleOnClick(event, '/my-pokemon')}>
-        <a css={baseLink}>
+        <a css={baseLink} role="bottom-navigation-button">
           <MonsterIcon color="white" />
         </a>
       </li>
