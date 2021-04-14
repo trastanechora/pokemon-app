@@ -1,23 +1,17 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, css, keyframes } from '@emotion/react';
+import { jsx, css } from '@emotion/react';
 import React from 'react';
 
 import { createRippleEffect } from '../utils';
 
 export interface IButtonProps {
-  type?: 'primary' | 'secondary';
   onClick?: (event: any) => void;
-  href?: string;
-  leftIcon?: string;
-  rightIcon?: string;
-  iconSize?: string;
-  expanded?: boolean;
   className?: string;
   children?: React.ReactNode;
 }
 
-const Button = ({ type, onClick, children }: IButtonProps) => {
+const Button = ({ onClick, children, className }: IButtonProps) => {
   const handleOnClick = (event) => {
     createRippleEffect(event, 'white');
     if (onClick) {
@@ -44,7 +38,7 @@ const Button = ({ type, onClick, children }: IButtonProps) => {
   `;
 
   return (
-    <div onClick={handleOnClick} css={baseButton}>
+    <div onClick={handleOnClick} css={baseButton} className={className} role="button">
       {children}
     </div>
   );
