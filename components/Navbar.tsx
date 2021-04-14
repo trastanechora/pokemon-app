@@ -91,12 +91,14 @@ const Navbar = () => {
     <div css={navbarBody}>
       <div css={navbarContainer}>
         <div css={leftMenuGroup}>
-          <div css={backButton} onClick={handleOnClick}>
+          <div css={backButton} onClick={handleOnClick} role="navigation-button" id="back-nav-button">
             <BackIcon css={backIcon} color="white" />
           </div>
           <PokeballIcon css={iconWrapper} color="white" />
           <Link href="/">
             <a
+              role="navigation-button"
+              id="home-nav-button"
               css={css`
                 ${baseLink}
                 ${titleLink}
@@ -108,6 +110,8 @@ const Navbar = () => {
         <div css={rightMenuGroup}>
           <Link href="/pokemon">
             <a
+              role="navigation-button"
+              id="pokemon-nav-button"
               css={css`
                 ${baseLink}
               `}>
@@ -116,6 +120,8 @@ const Navbar = () => {
           </Link>
           <Link href="/my-pokemon">
             <a
+              id="my-pokemon-nav-button"
+              role="navigation-button"
               css={css`
                 ${baseLink}
               `}>
