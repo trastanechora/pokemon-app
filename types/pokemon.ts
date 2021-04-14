@@ -17,17 +17,17 @@ export interface Sprite {
 export interface Pokemon {
   nickname?: string;
   uuid?: string;
-  abilities: Ability[];
-  height: number;
-  id: number;
-  moves: Move[];
-  name: string;
-  order: number;
-  species: BaseName;
-  sprites: Sprite;
-  types: Type[];
-  weight: number;
-  status: boolean;
+  abilities?: Ability[];
+  height?: number;
+  id?: number;
+  moves?: Move[];
+  name?: string;
+  order?: number;
+  species?: BaseName;
+  sprites?: Sprite;
+  types?: Type[];
+  weight?: number;
+  status?: boolean;
   image?: string;
 }
 
