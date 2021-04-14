@@ -7,6 +7,7 @@ import { useQuery, gql } from '@apollo/client';
 import { useRouter } from 'next/router';
 import { POKEMON_DB } from '../../db';
 import DefaultLayout from '../../layout/Default';
+import Loading from '../../components/Loading';
 import Button from '../../components/Button';
 
 const container = css`
@@ -56,7 +57,7 @@ const instruction = css`
 const warning = css`
   font-size: small;
   color: red;
-`
+`;
 
 const MyPokemonAction = () => {
   const { state, dispatch } = useContext(store);
@@ -64,7 +65,6 @@ const MyPokemonAction = () => {
   const [nickname, setNickname] = useState<string>('');
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>('');
-
 
   useEffect(() => {
     if (uuid) {
@@ -93,12 +93,14 @@ const MyPokemonAction = () => {
   };
 
   const onSuccess = () => {
-    POKEMON_DB.catchPokemon({ ...data.pokemon, nickname }).then(() => {
-      dispatch({ type: 'ADD_MY_POKEMON', payload: { ...data.pokemon, nickname } });
-      router.replace('/my-pokemon');
-    }).catch((err: string) => {
-      setErrorMessage(err);
-    });
+    POKEMON_DB.catchPokemon({ ...data.pokemon, nickname })
+      .then(() => {
+        dispatch({ type: 'ADD_MY_POKEMON', payload: { ...data.pokemon, nickname } });
+        router.replace('/my-pokemon');
+      })
+      .catch((err: string) => {
+        setErrorMessage(err);
+      });
   };
 
   const onFailed = () => {
@@ -153,7 +155,7 @@ const MyPokemonAction = () => {
   if (loading)
     return (
       <DefaultLayout>
-        <div>Loading..</div>
+        <Loading />
       </DefaultLayout>
     );
 

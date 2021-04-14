@@ -9,6 +9,7 @@ import { store } from '../../store';
 import DefaultLayout from '../../layout/Default';
 import PokeballIcon3D from '../../components/icons/PokeballIcon3D';
 import ReleaseIcon from '../../components/icons/ReleaseIcon';
+import Loading from '../../components/Loading';
 
 const PokemonDetail = () => {
   const router = useRouter();
@@ -272,7 +273,7 @@ const PokemonDetail = () => {
     <DefaultLayout>
       <div>
         {loading ? (
-          <div>Loading...</div>
+          <Loading />
         ) : error ? (
           <div>Error! {error.message}</div>
         ) : (

@@ -6,6 +6,7 @@ import { useQuery, gql } from '@apollo/client';
 import { store } from '../../store';
 import DefaultLayout from '../../layout/Default';
 import PokemonList from '../../components/PokemonList';
+import Loading from '../../components/Loading';
 import { POKEMON_DB } from '../../db';
 
 const GET_POKEMONS = gql`
@@ -47,7 +48,7 @@ const PokemonIndex = () => {
   if (loading)
     return (
       <DefaultLayout>
-        <div>Loading..</div>
+        <Loading />
       </DefaultLayout>
     );
 
