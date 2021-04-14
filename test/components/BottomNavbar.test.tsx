@@ -22,28 +22,28 @@ describe('BottomNavbar Component', () => {
   describe('Render component', () => {
     it('Should render component correctly', async () => {
       const { getAllByRole } = render(<BottomNavbar />);
-      const navigationButtons = getAllByRole('bottom-navigation-button');
+      const navigationButtons = getAllByRole('button');
       expect(navigationButtons.length).toBe(3); // ['Home', 'Pokemon List', 'My Pokemon']
     });
   });
   describe('Function test', () => {
     it('Should trigger router push to Home', async () => {
       const { getAllByRole } = render(<BottomNavbar />);
-      const button = getAllByRole('bottom-navigation-button');
+      const button = getAllByRole('button');
 
       fireEvent.click(button[0]); // Call redirect to Home
       expect(createRippleEffect).toBeCalled();
     });
      it('Should trigger router push to Pokemon', async () => {
       const { getAllByRole } = render(<BottomNavbar />);
-      const button = getAllByRole('bottom-navigation-button');
+      const button = getAllByRole('button');
 
       fireEvent.click(button[1]); // Call redirect to Pokemon
       expect(createRippleEffect).toBeCalled();
      });
      it('Should trigger router push to My Pokemon', async () => {
       const { getAllByRole } = render(<BottomNavbar />);
-      const button = getAllByRole('bottom-navigation-button');
+      const button = getAllByRole('button');
 
       fireEvent.click(button[2]); // Call redirect to My Pokemon
       expect(createRippleEffect).toBeCalled();

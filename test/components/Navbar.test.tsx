@@ -29,7 +29,7 @@ describe('Navbar Component', () => {
   describe('Function test', () => {
     it('Should trigger router back', async () => {
       const { getAllByRole } = render(<Navbar />);
-      const button = getAllByRole('navigation-button');
+      const button = getAllByRole('button');
 
       fireEvent.click(button[0]);
       expect(createRippleEffect).toBeCalled();

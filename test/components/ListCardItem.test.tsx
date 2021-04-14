@@ -54,14 +54,14 @@ describe('BottomNavbar Component', () => {
   describe('Function test', () => {
     it('Should trigger router push to Owned Pokemon Page', async () => {
       const { getAllByRole } = render(<ListCardItem showOwned={true} pokemonObject={mockPokemonData} />);
-      const button = getAllByRole('pokemon-card');
+      const button = getAllByRole('button');
 
       fireEvent.click(button[0]); // Call redirect to owned pokemon detail page
       expect(createRippleEffect).toBeCalled();
     });
     it('Should trigger router push to Wild Pokemon Page', async () => {
       const { getAllByRole } = render(<ListCardItem showOwned={false} pokemonObject={mockPokemonData} />);
-      const button = getAllByRole('pokemon-card');
+      const button = getAllByRole('button');
 
       fireEvent.click(button[0]); // Call redirect to wild pokemon detail page
       expect(createRippleEffect).toBeCalled();

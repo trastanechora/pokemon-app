@@ -121,17 +121,17 @@ const BottomNavbar = () => {
   return (
     <ul css={navbarBody}>
       <li css={baseListItem} onClick={(event) => handleOnClick(event, '/')}>
-        <a css={baseLink} role="bottom-navigation-button">
+        <a css={baseLink} role="button">
           <HomeIcon color="white" />
         </a>
       </li>
       <li css={baseListItem} onClick={(event) => handleOnClick(event, '/pokemon')}>
-        <a css={baseLink} role="bottom-navigation-button">
+        <a css={baseLink} role="button">
           <ListIcon color="white" />
         </a>
       </li>
       <li css={baseListItem} onClick={(event) => handleOnClick(event, '/my-pokemon')}>
-        <a css={baseLink} role="bottom-navigation-button">
+        <a css={baseLink} role="button">
           <MonsterIcon color="white" />
         </a>
       </li>
