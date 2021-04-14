@@ -32,6 +32,7 @@ const ListCardItem = ({ pokemonObject, showOwned }: IListCardItemProps) => {
       0 1px 5px 0 rgb(0 0 0 / 12%);
     border-radius: 10px;
     width: 90%;
+    min-height: 150px;
     text-align: center;
     position: relative;
     overflow: hidden;
